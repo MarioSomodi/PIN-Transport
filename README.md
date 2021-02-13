@@ -16,6 +16,7 @@ with CRUD operations on the database (firebase).
   * Classes for aligment, margins, padding etc.
   * Form groups.
   * Input groups.
+  * ...
 * Deeper understanding of JavaScript and JQuery syntax.
 * More complex css selector usage.
 * Overall good practise rules for writing HTML/CSS/JS.
