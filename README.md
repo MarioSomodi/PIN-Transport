@@ -10,6 +10,7 @@ This is a small web app made for a college course I had. It is basically a porta
 with CRUD operations on the database (Firebase).
 ## Things I learned.
 * CRUD operations on Firebase realtime-database.
+* Using Firebase authentication for my administration.
 * Bootstrap 4.x.x.
   * Grid system.
   * Modals.
