@@ -1,6 +1,6 @@
 # PIN-Transport
 ## Setup 
-Install all dependencies by going to assets/plugins and running the below command in CMD/Windows PowerShell (Node package manager required).
+Install all dependencies by going to assets/plugins and running the below command in CMD/Windows PowerShell or any other terminal. (Node package manager required)
 ```
 npm i
 ```
