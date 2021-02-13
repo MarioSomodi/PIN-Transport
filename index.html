@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="hr">
+	<head>
+		<!-- Meta tags -->
+		<meta charset="UTF-8">
+		<meta name="author" content="Mario Somodi">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name=”description” content="Dobrodošli na stranice PIN prijevoza rezervirajte svoje mjesto na našim vlakovima vec unutar nekoliko minuta! Brza nabava karti i upute koje će vam pomoći pri kupnji karte.">
+		<!-- Linking all the css files needed for the website and the website's favicon  -->
+		<link rel="icon" href="img/logo/favicon.png" type="image/png">
+		<link rel="stylesheet" href="assets\plugins\node_modules\bootstrap\dist\css\bootstrap.min.css">
+		<link rel="stylesheet" href="assets\plugins\node_modules\bootstrap-select\dist\css\bootstrap-select.min.css">
+		<link rel="stylesheet" href="assets\plugins\node_modules\@fortawesome\fontawesome-free\css\all.min.css">
+		<link rel="stylesheet" href="assets\plugins\node_modules\bootstrap-datepicker\dist\css\bootstrap-datepicker3.min.css">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="css/style.css">
+		<!-- Setting the website's title -->
+		<title>PIN prijevoz</title>
+	</head>
+	<body id="top" data-spy="scroll" data-target=".navbar" data-offset="60">
+		<!-- Loader while the tables fill with data. -->
+		<div class="loader visible">
+			<div class="image">
+			  <i class="fa fa-codepen text-danger"></i>
+			</div>
+			<span></span>
+		</div>
+		<!-- All body content -->
+		<div class="body-content hiddenElement p-0 m-0">
+			<div class="wrapper" id="back-img">
+				<!-- Header -->
+				<div class="wrapper bg-light py-3 px-5" id="header">
+					<header class="d-flex flex-row align-items-center">
+						<a href="index.html">
+							<div class="d-flex">
+								<h1 class="titleP">P.</h1>
+								<h1 class="titleI">I.</h1>
+								<h1 class="titleN">N.</h1>
+								<h1 class="text-danger">Prijevoz</h1>
+							</div>
+						</a>
+						<h2 class="align-self-end ml-auto">
+							<small>Dođite do svoga odredišta brzo i sigurno sa nasim vlakovima!</small>
+						</h2>
+					</header>
+				</div>
+				<!-- Navbar -->
+				<div class="wrapper bg-transparent">
+					<div class="container">
+						<nav class="navbar navbar-expand-md navbar-dark bg-transparent pb-2" id="PINNavbar">
+							<a href="#index.html class="navbar-brand">
+								<img id="logo" class="img-fluid" src="img\logo\navbar_brand_logo_light.png" alt="PIN prijevoz transparent logo">
+							</a>
+							<button id="hamburger"class="navbar-toggler" type="button" data-toggle="collapse" data-target="#PINNavbarLinks">
+								<span>
+									<i class="fas fa-bars"></i>
+								</span>
+							</button>
+							<div class="collapse navbar-collapse" id="PINNavbarLinks">
+								<ul id="ulNav" class="navbar-nav ml-auto">
+									<li class="nav-item">
+										<a href="#header" class="nav-link px-3">
+											Naslovnica
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#showTickets" class="nav-link px-3">
+											Pregled karti
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#buyTicket" class="nav-link px-3">
+											Kupi kartu
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="administracija.html" class="nav-link px-3">
+											Administracija
+										</a>
+									</li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+				</div>
+				<!-- Home page -->
+				<div class="wrapper" id="home-content">
+					<article>
+						<div class="row">
+							<div class="col text-center">
+								<h1 class="heading">Dobrodošli</h1>
+								<p>Drago nam je što ste se odlućili koristiti PIN prijevoz. Od svih vrsta prometa željeznički promet ekološki je najprihvatljiviji i održiv na dulji rok.</p>
+							</div>
+						</div>
+						<div class="row mx-auto">
+							<div class="col-md-6 text-center">
+								<h4 class="heading">V<span id="element1"></span></h4>
+								<p>Postati vodeće prijevozničko poduzeće u Hrvatskoj usmjereno na masovan i kvalitetan željeznički prijevoz putnika, u skladu s tržišnim načelima, vodeći se pritom vlasnikovim interesima i štiteći ih, a na zadovoljstvo korisnika prijevozne usluge i radnika.</p>
+							</div>
+							<div class="col-md-6 text-center">
+								<h4 class="heading">M<span id="element2"></span></h4>
+								<p>Prijevoz putnika pružanjem kvalitetne i pouzdane te ekonomski i ekološki prihvatljive usluge u gradsko-prigradskom, lokalnom, regionalnom, te unutarnjem i međunarodnom daljinskom prijevozu suvremenim mobilnim kapacitetima.</p>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+			<!-- Body Container -->
+			<div class="container">
+				<div class="content-box border border-dark rounded bg-dark">
+					<!-- Show all tickets -->
+					<div class="wrapper bg-dark text-light pt-2 px-5" id="showTickets">
+						<div class="text-center">
+							<h2 class="heading pb-2 pt-4">Sve karte</h2>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="searchTickets" class="text-light">Pretraga karti</label>
+								<input id="searchTickets" type="text" class="form-control bg-danger border border-danger text-light search" placeholder="Unesite izraz za pretragu..">
+							</div>
+						</div>
+						<table class="table table-responsive-xl mt-4 table-striped text-center" id="ticketsTable">
+							<thead class="bg-danger">
+								<tr class="text-light">
+									<th scope="col">#</th>
+									<th scope="col">Vrsta</th>
+									<th scope="col">Polaziste</th>
+									<th scope="col">Odrediste</th>
+									<th scope="col">Polazak</th>
+									<th scope="col">Povratak</th>
+									<th scope="col">Istek valjanosti</th>
+									<th scope="col">Broj putnika</th>
+									<th scope="col">Razred</th>
+									<th scope="col">Cijena</th>
+									<th scope="col">Ispis</th>
+									<th scope="col">Prikaz</th>
+								</tr>
+							</thead>
+							<tbody class="text-light">
+							</tbody>
+						</table>
+						<div class="hiddenElement" id="passangersOfSelectedTicket">
+							<div class="passangerTableTitle py-3">
+								<div class="row">
+									<div class="col-lg-9 my-auto">
+										<h4 class="heading" id="odabranaKarta">Putnici odabrane karte: </h4>
+									</div>
+									<div class="col-lg-3 my-auto">
+										<button onclick="closePassangerTable()" class="btn btn-danger form-control">Zatvorite listu putnika</button>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12">
+										<label for="searchPassangers" class="text-light">Pretraga putnika</label>
+										<input id="searchPassangers" type="text" class="form-control bg-danger border border-danger text-light search" placeholder="Unesite izraz za pretragu..">
+									</div>
+								</div>
+							</div>
+							<table class="table mt-4 table-striped text-center" id="ticketsPassangersTable">
+								<thead class="bg-danger">
+									<tr class="text-light">
+										<th scope="col">#</th>
+										<th scope="col">Ime</th>
+										<th scope="col">Prezime</th>
+									</tr>
+								</thead>
+								<tbody class="text-light">
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- Divider -->
+					<div class="my-4 py-2" id="divider">
+						<hr class="border-danger">
+					</div>
+					<!-- New ticket -->
+					<div class="wrapper bg-dark text-light newTicket-Form pb-5" id="buyTicket">
+						<!-- Heading -->
+						<div class="text-center py-3 px-5">
+							<h2 class="heading">Nova karta</h2>
+						</div>						
+						<!-- Ticket type -->
+						<div class="form-row">
+							<div class="form-group col-sm px-5 text-center">
+								<label for="vrstaKarte" class="text-light">Vrsta karte</label>
+								<select class="show-tick form-control selectPicker bg-danger" id="vrstaKarte" title="Odaberite vrstu karte.." data-size="auto" data-style="btn-danger">
+								<option value="Jednosmjerna karta">Jednosmjerna karta</option>
+								<option value="Povratna karta">Povratna karta</option>
+								</select>
+								<small id="vrstaKarteError" class="hiddenElement">placeholder</small>
+							</div>
+						</div>
+						<!-- Start/Finish -->
+						<div class="form-row">
+							<div class="form-group col-sm-6 text-center px-5 selectPol">
+								<label for="polaziste" class="text-light">Polaziste</label>
+								<select class="show-tick form-control selectPicker bg-danger" id="polaziste" data-live-search="true" title="Odaberite vaše polazište.." data-size="auto" data-header="Odaberite polazište" data-style="btn-danger">
+								</select>
+								<small id="polazisteError" class="hiddenElement">placeholder</small>
+							</div>
+							<div class="form-group col-sm-6 text-center px-5 selectOdr">
+								<button class="btn exchange py-auto btn-danger" onclick="switchOptions()" type="button">
+									<span>
+										<i class="fas fa-long-arrow-alt-up"></i>
+										<i class="fas fa-long-arrow-alt-down"></i>
+										<i class="fas fa-exchange-alt text-light"></i>
+									</span>
+								</button>
+								<label for="odredište" class="text-light">Odredište</label>
+								<select class="show-tick form-control selectPicker bg-danger" id="odrediste" data-live-search="true" title="Odaberite vaše odredište.." data-size="auto" data-header="Odaberite odredište" data-style="btn-danger">
+								</select>
+								<small id="odredisteError" class="hiddenElement">placeholder</small>
+							</div>
+						</div>
+						<!-- Datepickers -->
+						<div class="form-row">
+							<div class="col-sm-6 px-5">
+								<div class="form-group p-0 m-0 datepicker-top text-center">
+									<label for="datumPol" class="text-light">Datum polaska</label>
+									<div class="input-group datumBorderPol">
+										<input id="datumPol" type="text" class="form-control datepicker-pol dateInput bg-danger border-danger text-light" placeholder="Datum polaska.." readonly>
+										<div class="input-group-append">
+											<button onclick="triggerDatepicker('#datumPol')" id="btnPol"class="btn px-2 m-0 btn-danger" type="button">
+												<span>
+													<i class="far fa-calendar-alt text-light"></i>
+												</span>
+											</button>
+										</div>
+									</div>
+									<small id="datumPolError" class="hiddenElement">placeholder</small>
+								</div>
+							</div>
+							<div class="col-sm-6 px-5">
+								<div class="form-group p-0 m-0 datepicker-bottom text-center">
+									<label for="datumPov" class="text-light">Datum povratka</label>
+									<div class="input-group datumBorderPov">
+										<input id="datumPov" type="text" class="form-control datepicker-pov dateInput bg-danger border-danger text-light" placeholder="Datum povratka.." readonly>
+										<div class="input-group-append">
+											<button id="dpPov" onclick="triggerDatepicker('#datumPov')" class="btn px-2 m-0 btn-danger" type="button">
+												<span>
+													<i class="far fa-calendar-alt text-light"></i>
+												</span>
+											</button>
+										</div>
+									</div>
+									<small id="datumPovError" class="hiddenElement">placeholder</small>
+								</div>
+							</div>
+						</div>
+						<!-- Number of passangers -->
+						<div class="form-row">
+							<div class="form-group col-sm px-5 py-2 m-0 text-center">
+								<label for="passangerNum" class="text-light">Broj putnika</label>
+								<input id="passangerNum" type="number" class="form-control bg-danger passangers text-light" placeholder="Unesite broj putnika.." min="0">
+								<small id="passangerNumError" class="hiddenElement">placeholder</small>
+							</div>
+						</div>
+						<!-- Class -->
+						<div class="form-row">
+							<div class="form-group col-sm px-5 text-center">
+								<label for="razredKarte" class="text-light">Razred karte</label>
+								<select class="show-tick form-control selectPicker bg-danger" id="razredKarte" title="Odaberite klasu karte.." data-size="auto" data-style="btn-danger">
+								<option>Prvi razred</option>
+								<option>Drugi razred</option>
+								</select>
+								<small id="classError" class="hiddenElement">placeholder</small>
+							</div>
+						</div>
+						<!-- New ticket button -->
+						<div class="form-row">
+							<div class="form-group col-sm-6 offset-sm-3 px-5">
+								<button onclick="validateNewTicketForm()" id="btnSubmit"class="btn px-2 mt-3 m-0 btn-danger form-control" type="button">
+									Kupi kartu
+								</button>
+							</div>
+						</div>
+					</div>
+					<!-- Content Footer -->
+					<div class="wrapper text-light footerContent text-center" id="footer">
+						<!-- Footer top -->
+						<div id="divider">
+							<hr class="border-danger">
+						</div>
+						<!-- Content -->
+						<footer class="footer-distributed">
+							<div class="footer-left mr-3">
+								<div class="d-flex">
+									<h4 class="titleP">P.</h4>
+									<h4 class="titleI">I.</h4>
+									<h4 class="titleN">N.</h4>
+									<h4 class="text-danger">Prijevoz</h4>
+								</div>
+								<p class="footer-links">
+									<a href="#header">Naslovnica</a>
+									·
+									<a href="#showTickets">Pregled karti</a>
+									·
+									<a href="#buyTicket">Kupi kartu</a>
+									·
+									<a href="administracija.html">Administracija</a>
+								</p>
+							</div>
+							<div class="footer-center mr-3">
+								<div>
+									<i class="fa fa-map-marker text-danger"></i>
+									<p><span>Jurišićeva ul. 13</span> Zagreb, Hrvatska</p>
+								</div>
+								<div>
+									<i class="fa fa-phone text-danger"></i>
+									<p>+385 999 9876543</p>
+								</div>
+								<div>
+									<i class="fa fa-envelope text-danger"></i>
+									<p><a href="mailto:P.I.N.Prijevoz@pin-transport.com">P.I.N.Prijevoz@pin-transport.com</a></p>
+								</div>
+							</div>
+							<div class="footer-right">
+								<p class="footer-company-about">
+									<span>O nama</span>
+									Vodeće prijevozničko poduzeće u Hrvatskoj usmjereno na masovan i kvalitetan željeznički prijevoz putnika, u skladu s tržišnim načelima.
+								</p>
+								<div class="footer-icons">
+									<a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+									<a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+									<a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></i></a>
+									<a href="https://www.github.com/MarioSomodi" target="_blank"><i class="fab fa-github"></i></i></a>
+								</div>
+							</div>
+						</footer>
+					</div>
+				</div>
+			</div>
+			<a href="#top" id="backToTop"><i class="fa fa-chevron-up"></i></a>
+			<!-- Site footer -->
+			<footer class="footer">
+				<div class="container" >
+					<p class="text-center">PIN prijevoz © 2021 Copyright | Mario Šomođi </p>
+				</div>
+			</footer>
+		</div>
+		<!-- Add users modal -->
+		<div class="modal" id="modalAddPassangers" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content bg-dark">
+				<div class="modal-header border-danger">
+					<div class="mx-auto">
+						<h4 class="modal-title text-light">Putnici karte</h4>
+					</div>
+					<div class="my-auto fixTitle">
+						<button id="closeButton" type="button" class="close hiddenElement">
+							<i class="fas fa-times text-light"></i>
+						</button>
+					</div>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<div class="text-center text-light pt-3 pb-2">
+							<h5 id="numOfPassangersToAdd"></h5>
+						</div>
+						<div class="form-row pt-3">
+							<div class="form-group col-sm-10 offset-sm-1 text-center">
+								<label for="passangerFirstName" class="text-light">Ime putnika</label>
+								<input id="passangerFirstName" type="text" class="form-control bg-danger passangers text-light border-danger" placeholder="Unesite ime putnika.." autocomplete="off">
+								<small id="passangerFirstNameError" class="hiddenElement text-light">placeholder</small>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-sm-10 offset-sm-1 text-center">
+								<label for="passangerLastName" class="text-light">Prezime putnika</label>
+								<input id="passangerLastName" type="text" class="form-control bg-danger passangers text-light border-danger" placeholder="Unesite prezime putnika.." autocomplete="off">
+								<small id="passangerLastnameError" class="hiddenElement text-light">placeholder</small>
+							</div>
+						</div>
+						<div class="form-row pb-3">
+							<div class="form-group col-sm-10 offset-sm-1 text-center">
+								<label for="passangerOIB" class="text-light">OIB putnika</label>
+								<input id="passangerOIB" type="number" class="form-control bg-danger passangers text-light border-danger" placeholder="Unesite OIB putnika.." min="0">
+								<small id="passangerOIBError" class="hiddenElement text-light">placeholder</small>
+							</div>
+						</div>
+						<div class="text-center text-light pb-2">
+							<h5 id="successMassage" class="hiddenElement">Putnik uspijesno dodan!</h5>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer border-danger">
+					<div class="mx-auto">
+						<button id="addPassanger" type="button" class="btn btn-danger form-control">Dodaj putnika</button>
+					</div>
+					<div class="mx-auto">
+						<button id="closeAddPassanger" type="button" class="btn btn-danger form-control">Odustani</button>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<!-- Ticket price modal -->
+		<div class="modal" id="modalTicketPrice" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content bg-dark">
+				<div class="modal-header border-danger">
+					<div class="mx-auto">
+						<h4 class="modal-title text-light">Nova karta</h4>
+					</div>
+					<div class="my-auto fixTitle">
+						<button id="buttonCloseTicket" type="button" class="close visible">
+							<i class="fas fa-times text-light"></i>
+						</button>
+					</div>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<div class="text-center">
+							<big id="modalTicketPolaziste">Polaziste</big><i id="arrowForTicket" class="fas mx-3 px-1 text-light"></i><big id="modalTicketOdrediste">Odrediste</big>
+						</div>
+						<div class="mr-auto mt-3">
+							<p id="modalTicketType">Vrsta karte: </p>
+							<p id="modalTicketClass">Razred karte: </p>
+							<p id="modalStartDate">Datum polaska (mm.dd.yyyy): </p>
+							<p id="modalTicketExpiry">Datum isteka valjanosti karte (mm.dd.yyyy): </p>
+							<p id="modalInitialPrice">Prvobitna cijena (cijena za jednog putnika): </p>
+							<p id="modalNumOfPassan">Broj putnika: </p>
+							<p id="modalFullPrice">Puna cijena (cijena za sve putnika): </p>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="ticketDiscount" class="text-light">Popust (%)</label>
+								<div class="input-group">
+									<input id="ticketDiscount" type="text" class="form-control bg-danger border-danger text-light" placeholder="Unesite popust u postotcima.." min="0">
+									<div class="input-group-append">
+										<button id="btnDiscount" onclick="discountTicket()" class="btn px-2 m-0 btn-danger" type="button">Primjeni popust</button>
+									</div>
+								</div>
+								<small id="ticketDiscountError" class="hiddenElement">placeholder</small>
+							</div>
+						</div>
+						<div class="text-center text-light pb-2">
+							<h5 id="successMassageTicket" class="hiddenElement">Karta uspijesno kupljena!</h5>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer border-danger">
+					<div class="mx-auto">
+						<button onclick="ticketToFB()" id="buyTicketModal" type="button" class="btn btn-danger form-control">Kupi kartu</button>
+					</div>
+					<div class="mx-auto">
+						<button id="closeBuyTicket" type="button" class="btn btn-danger form-control">Odustani</button>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<!-- Modal for ticket to pdf -->
+		<div class="modal" id="modalTicketToPdf" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content bg-dark">
+				<div class="modal-header border-danger">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-9">
+								<img id="logo" class="img-fluid" src="img\logo\navbar_brand_logo_light.png" alt="PIN prijevoz transparent logo">
+							</div>
+							<div class="col-sm-3 align-self-center">
+								<h4 id="pdfTicketId" class="m-0 ml-3 p-0">123456</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<div class="row text-light">
+							<div id="pdfTicketPolaziste" class="col-sm-5 text-right">
+								Polaziste
+							</div>
+							<div class="col-sm-2 text-center">
+								<i id="pdfarrowForTicket" class="fas fa-arrow-right mx-3 px-1 text-light"></i>
+							</div>
+							<div id="pdfTicketOdrediste" class="col-sm-5 text-left">
+								Odrediste
+							</div>
+						</div>
+						<div class="row text-center text-light">
+							<div id="pdfTicketType" class="col-sm-5 text-right">
+								Vrsta karte: Jednosmjerna
+							</div>	
+							<div id="pdfTicketClass" class="offset-sm-2 col-sm-5 text-left">
+								Razred karte: Prvi razred
+							</div>
+						</div>
+						<div class="row text-center text-light">
+							<div id="pdfTicketStartDate" class="col-sm-5 text-right">
+								Polazak: sutra
+							</div>	
+							<div id="pdfTicketEndDate" class="offset-sm-2 col-sm-5 text-left">
+								Povratak: preksutra
+							</div>
+						</div>
+						<div class="row text-center text-light">
+							<div id="pdfTicketExpiry" class="col-sm-12 text-center">
+								Istek valjanosti: za 3 dana
+							</div>	
+						</div>
+						<div class="row text-center text-light">
+							<div id="pdfTicketPrice" class="col-sm-12 text-center">
+								Cijena: 60kn
+							</div>
+						</div>
+						<table class="table mt-3 table-striped text-center" id="pdfTicketsPassangersTable">
+							<thead class="bg-danger">
+								<tr class="text-light">
+									<th scope="col">#</th>
+									<th scope="col">Ime</th>
+									<th scope="col">Prezime</th>
+								</tr>
+							</thead>
+							<tbody class="text-light">
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer border-danger">
+					<div class="d-flex flex-row align-items-center">
+						<div class="d-flex">
+							<h5 class="titleP">P.</h5>
+							<h5 class="titleI">I.</h5>
+							<h5 class="titleN">N.</h5>
+							<h5 class="text-danger">Prijevoz</h5>
+						</div>
+						<h6 class="align-self-center ml-5 text-center">
+							<small>Dođite do svoga odredišta brzo i sigurno sa nasim vlakovima!</small>
+						</h6>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<!-- Linking all the script (javascript) files needed for the website -->
+		<script src="assets\plugins\node_modules\jquery\dist\jquery.min.js"></script>
+		<script src="assets\plugins\node_modules\popper.js\dist\umd\popper.min.js"></script>
+		<script src="assets\plugins\node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
+		<script src="assets\plugins\node_modules\bootstrap-select\dist\js\bootstrap-select.min.js"></script>
+		<script src="assets\plugins\node_modules\bootstrap-datepicker\dist\js\bootstrap-datepicker.min.js"></script>
+		<script src="assets\plugins\node_modules\bootstrap-datepicker\dist\locales\bootstrap-datepicker.hr.min.js"></script>
+		<script src="assets\plugins\node_modules\typed.js\lib\typed.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-database.js"></script>
+		<script src="js\classes.js"></script>
+		<script src="js/firebaseInit.js"></script>
+		<script src="js/app-index.js"></script>
+	</body>
+</html>

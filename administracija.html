@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Meta tags -->
+        <meta charset="UTF-8">
+        <meta name="author" content="Mario Somodi">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name=”description” content="Administracijska stranica PIN prijevoza">
+        <!-- Linking all the css files needed for the website and the website's favicon  -->
+        <link rel="icon" href="img/logo/favicon.png" type="image/png">
+        <link rel="stylesheet" href="assets\plugins\node_modules\bootstrap\dist\css\bootstrap.min.css">
+        <link rel="stylesheet" href="assets\plugins\node_modules\bootstrap-select\dist\css\bootstrap-select.min.css">
+        <link rel="stylesheet" href="assets\plugins\node_modules\@fortawesome\fontawesome-free\css\all.min.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+        <!-- Setting the website's title -->
+        <title>PIN prijevoz | Administracija</title>
+    </head>
+    <body id="top" data-spy="scroll" data-target=".navbar" data-offset="60">
+        <!-- Loader while the tables fill with data. -->
+        <div class="loader visible">
+			<div class="image">
+			  <i class="fa fa-codepen"></i>
+			</div>
+			<span></span>
+        </div>
+        <!-- All body content -->
+        <div class="body-content hiddenElement p-0 m-0">
+            <div class="wrapper" id="back-img">
+                <!-- Header -->
+                <div class="wrapper bg-light py-3 px-5" id="header">
+                <header class="d-flex flex-row align-items-center">
+                    <a href="index.html">
+                        <div class="d-flex">
+                            <h1 class="titleP">P.</h1>
+                            <h1 class="titleI">I.</h1>
+                            <h1 class="titleN">N.</h1>
+                            <h1 class="text-danger">Prijevoz</h1>
+                        </div>
+                    </a>
+                    <h2 class="align-self-end ml-auto">
+                        <small>Dođite do svoga odredišta brzo i sigurno sa nasim vlakovima!</small>
+                    </h2>
+                </header>
+                </div>
+                <!-- Navbar -->
+                <div class="wrapper bg-transparent">
+                <div class="container">
+                    <nav class="navbar navbar-expand-md navbar-dark bg-transparent pb-2" id="PINNavbar">
+                        <a href="#index.html" class="navbar-brand">
+                            <img id="logo" class="img-fluid" src="img\logo\navbar_brand_logo_light.png" alt="PIN prijevoz transparent logo">
+                        </a>
+                        <button id="hamburger"class="navbar-toggler" type="button" data-toggle="collapse" data-target="#PINNavbarLinks">
+                            <span>
+                                <i class="fas fa-bars"></i>
+                            </span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="PINNavbarLinks">
+                            <ul id="ulNav" class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a href="index.html" class="nav-link px-3">
+                                        Naslovnica
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#showTickets" class="nav-link px-3">
+                                        Karte i putnici
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#showCounties" class="nav-link px-3">
+                                        Zupanije i gradovi
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                </div>
+                <!-- Page start content -->
+                <div class="wrapper" id="home-content">
+                    <article>
+                        <div class="row">
+                            <div class="col text-center">
+                                <h1 class="heading">Administracija</h1>
+                            </div>
+                        </div>
+                        <div class="row mx-auto">
+                            <div class="col-md-6 text-center">
+                                <h4 class="heading">K<span id="element3"></span></h4>
+                                <p>Administracija nad kartama i njihovim putnicima. Brisanje karte, pojedinacnog putnika te azuriranje istih.</p>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <h4 class="heading">Z<span id="element4"></span></h4>
+                                <p>Administracija nad zupanijama i njihovim gradovima. Brisanje cijelih zupanija, pojedinacnih gradova te azuriranje i dodavanje istih. Brza aktivacija i deaktivacija gradova. </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div class="container">
+                <div class="content-box border border-dark rounded bg-dark">
+                    <!-- Show all tickets and their passangers -->
+                    <div class="wrapper bg-dark text-light pt-2 px-5" id="showTickets">
+                        <div class="text-center">
+                            <h2 class="heading pb-2 pt-4">Sve karte</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label for="searchTickets" class="text-light">Pretraga karti</label>
+                                <input id="searchTickets" type="text" class="form-control bg-danger border border-danger text-light search" placeholder="Unesite izraz za pretragu.." autocomplete="off">
+                            </div>
+                        </div>
+                        <table class="table table-responsive-xl mt-4 table-striped text-center" id="ticketsTable">
+                            <thead class="bg-danger">
+                                <tr class="text-light">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Vrsta</th>
+                                    <th scope="col">Polaziste</th>
+                                    <th scope="col">Odrediste</th>
+                                    <th scope="col">Polazak</th>
+                                    <th scope="col">Povratak</th>
+                                    <th scope="col">Istek valjanosti</th>
+                                    <th scope="col">Broj putnika</th>
+                                    <th scope="col">Razred</th>
+                                    <th scope="col">Cijena</th>
+                                    <th scope="col"><i class="far fa-trash-alt"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-light">
+                            </tbody>
+                        </table>
+                        <div class="hiddenElement" id="passangersOfSelectedTicket">
+                            <div class="passangerTableTitle py-3">
+                                <div class="row">
+                                    <div class="col-lg-9 my-auto">
+                                        <h4 class="heading" id="odabranaKarta">Putnici odabrane karte: </h4>
+                                    </div>
+                                    <div class="col-lg-3 my-auto">
+                                        <button onclick="closePassangerTable()" class="btn btn-danger form-control">Zatvorite listu putnika</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <label for="searchPassangers" class="text-light">Pretraga putnika</label>
+                                        <input id="searchPassangers" type="text" class="form-control border border-danger bg-danger text-light search" placeholder="Unesite izraz za pretragu.." autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table mt-4 table-striped text-center" id="ticketsPassangersTable">
+                                <thead class="bg-danger">
+                                    <tr class="text-light">
+                                        <th scope="col">#</th>
+                                        <th scope="col">Ime</th>
+                                        <th scope="col">Prezime</th>
+                                        <th scope="col"><i class="fas fa-pencil-alt"></i></i></th>
+                                        <th scope="col"><i class="far fa-trash-alt"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-light">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Divider -->
+                    <div class="my-4 py-2" id="divider">
+                        <hr class="border-danger">
+                    </div>
+                    <!-- Show all counties and their cities -->
+                    <div class="wrapper bg-dark text-light px-5" id="showCounties">
+                        <div class="text-center">
+                            <h2 class="heading pb-2">Sve zupanije</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label for="searchCounties" class="text-light">Pretraga zupanija</label>
+                                <input id="searchCounties" type="text" class="form-control bg-danger border border-danger text-light search" placeholder="Unesite izraz za pretragu.." autocomplete="off">
+                            </div>
+                        </div>
+                        <table class="table mt-4 table-striped text-center" id="showCountiesTable">
+                            <thead class="bg-danger">
+                                <tr class="text-light">
+                                    <th scope="col">#</th>
+                                    <th scope="col">Naziv</th>
+                                    <th scope="col">Broj gradova</th>
+                                    <th scope="col"><i class="fas fa-pencil-alt"></i></i></th>
+                                    <th scope="col"><i class="far fa-trash-alt"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-light">
+                            </tbody>
+                        </table>
+                        <div class="hiddenElement" id="citiesOfSelectedCounty">
+                            <div class="citiesTableTitle py-3">
+                                <div class="row">
+                                    <div class="col-lg-9 my-auto">
+                                        <h4 class="heading" id="odabranaZupanija">Gradovi odabrane zupanije: </h4>
+                                    </div>
+                                    <div class="col-lg-3 my-auto">
+                                        <button onclick="closeCitiesTable()" class="btn btn-danger form-control">Zatvorite listu gradova</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <label for="searchCities" class="text-light">Pretraga gradova</label>
+                                        <input id="searchCities" type="text" class="form-control bg-danger border border-danger text-light search" placeholder="Unesite izraz za pretragu.." autocomplete="off">
+                                    </div>
+                                </div>
+                            </div> 
+                            <table class="table mt-4 table-striped text-center table-responsive-md" id="countiesCitiesTable">
+                                <thead class="bg-danger">
+                                    <tr class="text-light">
+                                        <th scope="col">#</th>
+                                        <th scope="col">Naziv</th>
+                                        <th scope="col">Latituda</th>
+                                        <th scope="col">Longituda</th>
+                                        <th scope="col">Aktivan</th>
+                                        <th scope="col"><i class="fas fa-pencil-alt"></i></i></th>
+                                        <th scope="col"><i class="far fa-trash-alt"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-light">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+					<!-- Content Footer -->
+					<div class="wrapper text-light footerContent text-center" id="footer">
+						<!-- Footer top -->
+						<div id="divider">
+							<hr class="border-danger">
+						</div>
+						<!-- Content -->
+						<footer class="footer-distributed">
+							<div class="footer-left mr-3">
+								<div class="d-flex">
+									<h4 class="titleP">P.</h4>
+									<h4 class="titleI">I.</h4>
+									<h4 class="titleN">N.</h4>
+									<h4 class="text-danger">Prijevoz</h4>
+								</div>
+								<p class="footer-links">
+									<a href="index.html">Naslovnica</a>
+									·
+									<a href="#showTickets">Karte i putnici</a>
+									·
+									<a href="#showCounties">Kupi kartu</a>
+								</p>
+							</div>
+							<div class="footer-center mr-3">
+								<div>
+									<i class="fa fa-map-marker text-danger"></i>
+									<p><span>Jurišićeva ul. 13</span> Zagreb, Hrvatska</p>
+								</div>
+								<div>
+									<i class="fa fa-phone text-danger"></i>
+									<p>+385 999 9876543</p>
+								</div>
+								<div>
+									<i class="fa fa-envelope text-danger"></i>
+									<p><a href="mailto:P.I.N.Prijevoz@pin-transport.com">P.I.N.Prijevoz@pin-transport.com</a></p>
+								</div>
+							</div>
+							<div class="footer-right">
+								<p class="footer-company-about">
+									<span>O nama</span>
+									Vodeće prijevozničko poduzeće u Hrvatskoj usmjereno na masovan i kvalitetan željeznički prijevoz putnika, u skladu s tržišnim načelima.
+								</p>
+								<div class="footer-icons">
+									<a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+									<a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+									<a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></i></a>
+									<a href="https://www.github.com/MarioSomodi" target="_blank"><i class="fab fa-github"></i></i></a>
+								</div>
+							</div>
+						</footer>
+					</div>
+                </div>
+            </div>
+            <a href="#top" id="backToTop"><i class="fa fa-chevron-up"></i></a>
+            <!-- Site footer -->
+            <footer class="footer">
+                <div class="container" >
+                    <p class="text-center">PIN prijevoz © 2021 Copyright | Mario Šomođi </p>
+                </div>
+            </footer>
+        </div>
+        <!-- Sign in modal -->
+        <div class="modal" id="modalSignIn" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content bg-dark">
+				<div class="modal-header border-danger">
+					<div class="mr-auto">
+						<h4 class="modal-title text-light">Prijava</h4>
+                    </div>
+                    <div class="ml-auto">
+						<button id="backToFrontPage" class="btn btn-danger from-control"><a class="text-light" href="index.html">Nazad na naslovnicu</a></button>
+					</div>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+                        <div class="form-row text-center py-2">
+                            <div class="form-group col-sm-12">
+                                <label for="userEmail" class="text-light">Email</label>
+                                <input id="userEmail" type="email" class="form-control bg-danger passangers text-light border-danger" placeholder="Unesite email.." autocomplete="off">
+                                <small id="userEmailError" class="hiddenElement text-light">placeholder</small>
+                            </div>
+                        </div>
+                        <div class="form-row text-center py-2">
+                            <div class="form-group col-sm-12">
+                                <label for="userPassword" class="text-light">Lozinka</label>
+                                <input id="userPassword" type="password" class="form-control bg-danger passangers text-light border-danger" placeholder="Unesite lozinku.." autocomplete="off">
+                                <small id="userPasswordError" class="hiddenElement text-light">placeholder</small>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h4 id="succesLogIn" class="text-light hiddenElement">Uspijesna prijava!</h4>
+                        </div>
+					</div>
+				</div>
+				<div class="modal-footer border-danger">
+					<div class="mx-auto">
+						<button id="signInButton" type="button" class="btn btn-danger form-control">Prijavi se</button>
+					</div>
+					<div class="mx-auto">
+						<button id="forgotPasswordButton" type="button" class="btn btn-danger form-control">Zaboravljena lozinka</button>
+					</div>
+				</div>
+			</div>
+			</div>
+        </div>
+        <!-- Action modal -->
+        <div class="modal" id="modalAction" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content bg-dark">
+				<div class="modal-header border-danger">
+					<div class="mx-auto">
+						<h4 class="modal-title text-light">Potvrda</h4>
+					</div>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+                        <h5 class="text-center text-light p-3 m-3" id="action">Jeste li sigurni?</h5>
+					</div>
+				</div>
+				<div class="modal-footer border-danger">
+					<div class="mx-auto">
+						<button id="actionAccept" type="button" class="btn btn-danger form-control">Da</button>
+					</div>
+					<div class="mx-auto">
+						<button id="actionDecline" type="button" class="btn btn-danger form-control">Ne</button>
+					</div>
+				</div>
+			</div>
+			</div>
+        </div>
+        <!-- Secret -->
+        <div class="modal" id="secret" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header border-danger">
+                    <div class="mx-auto">
+                        <h4 class="secret-title modal-title text-light"></h4>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <h5 class="text-center text-light p-3 m-3" id="SecretAction"></h5>
+                    </div>
+                </div>
+                <div class="modal-footer border-danger">
+                    <div class="mx-auto">
+                        <button onclick="secretFunction()" type="button" class="btn btn-danger form-control">Ups!</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- Update county modal -->
+        <div class="modal" id="modalUpdateCounty" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content bg-dark">
+				<div class="modal-header border-danger">
+					<div class="mx-auto">
+						<h4 id="updateCountyTitle" class="modal-title text-light">Azuriraj zupaniju</h4>
+					</div>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                                <label for="newCountyName" class="text-light">Novi naziv zupanije</label>
+                                <input id="newCountyName" type="text" class="form-control bg-danger border border-danger text-light search" placeholder="Unesite novi naziv zupanije.." autocomplete="off">
+                                <small id="newCountyNameError" class="hiddenElement">placeholder</small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div id="succesMessageUpdate" class="form-group text-center hiddenElement col-sm-12">
+                                Uspijesno azurirano!
+                            </div>
+                        </div>
+					</div>
+				</div>
+				<div class="modal-footer border-danger">
+					<div class="mx-auto">
+						<button id="updateCountyYes" type="button" class="btn btn-danger form-control">Azuriraj</button>
+					</div>
+					<div class="mx-auto">
+						<button id="updateCountyNo" type="button" class="btn btn-danger form-control">Odustani</button>
+					</div>
+				</div>
+			</div>
+			</div>
+        </div>
+        <!-- Update city modal -->
+        <div class="modal" id="modalUpdateCity" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content bg-dark">
+				<div class="modal-header border-danger">
+					<div class="mx-auto">
+						<h4 id="updateCityTitle" class="modal-title text-light">Azuriraj grad</h4>
+					</div>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                                <label for="newCityName" class="text-light">Novi naziv grada</label>
+                                <input id="newCityName" type="text" class="form-control bg-danger border border-danger text-light search" placeholder="Unesite novi naziv grada.." autocomplete="off">
+                                <small id="newCityNameError" class="hiddenElement">placeholder</small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                                <label for="newCityLatName" class="text-light">Novia latituda grada</label>
+                                <input id="newCityLatName" type="number" class="form-control bg-danger border border-danger text-light search" placeholder="Unesite novu latitudu grada.." autocomplete="off">
+                                <small id="newCityLatNameError" class="hiddenElement">placeholder</small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                                <label for="newCityLongName" class="text-light">Nova longituda grada</label>
+                                <input id="newCityLongName" type="number" class="form-control bg-danger border border-danger text-light search" placeholder="Unesite novu longitudu grada.." autocomplete="off">
+                                <small id="newCityLongNameError" class="hiddenElement">placeholder</small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div id="succesMessageUpdateCity" class="form-group text-center hiddenElement col-sm-12">
+                                Uspijesno azurirano!
+                            </div>
+                        </div>
+					</div>
+				</div>
+				<div class="modal-footer border-danger">
+					<div class="mx-auto">
+						<button id="updateCityYes" type="button" class="btn btn-danger form-control">Azuriraj</button>
+					</div>
+					<div class="mx-auto">
+						<button id="updateCityNo" type="button" class="btn btn-danger form-control">Odustani</button>
+					</div>
+				</div>
+			</div>
+			</div>
+        </div>
+        <!-- Update ticket passanger modal -->
+        <div class="modal" id="modalUpdateTicketPassanger" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content bg-dark">
+				<div class="modal-header border-danger">
+					<div class="mx-auto">
+						<h4 id="updateTicketPassangerTitle" class="modal-title text-light">Azuriraj putnika</h4>
+					</div>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                                <label for="newPassangerName" class="text-light">Novo ime putnika</label>
+                                <input id="newPassangerName" type="text" class="form-control bg-danger border border-danger text-light search" placeholder="Unesite novo ime putnika.." autocomplete="off">
+                                <small id="newPassangerNameError" class="hiddenElement">placeholder</small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                                <label for="newPassangerLastname" class="text-light">Novo prezime putnika</label>
+                                <input id="newPassangerLastname" type="text" class="form-control bg-danger border border-danger text-light search" placeholder="Unesite novo prezime putnika.." autocomplete="off">
+                                <small id="newPassangerLastnameError" class="hiddenElement">placeholder</small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div id="succesMessageUpdatePassanger" class="form-group text-center hiddenElement col-sm-12">
+                                Uspijesno azurirano!
+                            </div>
+                        </div>
+					</div>
+				</div>
+				<div class="modal-footer border-danger">
+					<div class="mx-auto">
+						<button id="updatePassangerYes" type="button" class="btn btn-danger form-control">Azuriraj</button>
+					</div>
+					<div class="mx-auto">
+						<button id="updatePassangerNo" type="button" class="btn btn-danger form-control">Odustani</button>
+					</div>
+				</div>
+			</div>
+			</div>
+        </div>
+        <!-- Linking all the script (javascript) files needed for the website -->
+        <script src="assets\plugins\node_modules\jquery\dist\jquery.min.js"></script>
+		<script src="assets\plugins\node_modules\popper.js\dist\umd\popper.min.js"></script>
+		<script src="assets\plugins\node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
+		<script src="assets\plugins\node_modules\typed.js\lib\typed.min.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-auth.js"></script>
+		<script src="js\classes.js"></script>
+		<script src="js/firebaseInit.js"></script>
+		<script src="js/app-administration.js"></script>
+    </body>
+</html>
