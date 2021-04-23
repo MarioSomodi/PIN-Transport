@@ -1117,7 +1117,7 @@ function discountTicket(){
     var fullPrice = modalFullPrice.text().split(":");
     var priceToSubstract = fullPrice[1].split("k")[0] * discountPercent;
     var discountPrice = fullPrice[1].split("k")[0] - priceToSubstract;
-    globalTicket.ticketPrice = discountPrice;
+    globalTicket.ticketPrice = Math.round((discountPrice + Number.EPSILON) * 100) / 100;
     modalFullPrice.text("Puna cijena (cijena za sve putnike): " + globalTicket.ticketPrice + " kn");
   }
 }
