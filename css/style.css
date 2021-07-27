@@ -873,13 +873,50 @@ input#passangerNum{
     color: #DC3545;
 }
 
+.footer-center div{
+    align-items: center;
+}
+
+.footer-center div:first-child{
+    justify-content: left;
+}
+
+.footer-center div:last-child{
+    justify-content: space-evenly;
+}
+
 /* If you don't want the footer to be responsive, remove these media queries */
 
-@media (max-width: 880px) {
+@media (max-width: 1200px) {
+
+    .footer-center a, .footer-center span, .footer-center p{
+        font-size: 14px;
+    }
+
+}
+
+@media (max-width: 992px) {
+    .footer-left .titleP, .footer-left .titleI, .footer-left .titleN, .footer-left .text-danger{
+        font-size: 30px;
+    }
+
+    .footer-center div{
+        justify-content: space-between !important;
+        flex-direction: row-reverse;
+    }
+
+    .footer-left .d-flex{
+        align-items: center;
+        justify-content: center;
+    }
 
 	.footer-distributed{
 		font: bold 14px sans-serif;
 	}
+
+    .footer-center i {
+        align-self: flex-start;
+    }
 
 	.footer-distributed .footer-left,
 	.footer-distributed .footer-center,
@@ -894,6 +931,12 @@ input#passangerNum{
 		margin-left: 0;
 	}
 
+}
+@media (max-width: 420px) {
+
+    .footer-center a{
+        font-size: 10px !important;
+    }
 }
 
 /* Back to top button */
