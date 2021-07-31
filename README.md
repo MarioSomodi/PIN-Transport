@@ -10,6 +10,10 @@ Live version of the app available at [PIN Transport](https://mariosomodi.from.hr
 ## Description of the project.
 This is a small web app made for a college course I had. It is basically a portal for buying train tickets and it has an administration page
 with CRUD operations on the database (Firebase).
+## Technologies used.
+* HyperText Markup Language (HTML).
+* Javascript (JS)
+* Cascading Style Sheets (CSS)
 ## Things I learned.
 * CRUD operations on Firebase realtime-database.
 * Using Firebase authentication for my administration page.
