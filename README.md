@@ -7,12 +7,15 @@ npm i
 After that you are ready to go.
 ## Live version
 Live version of the app available at [PIN Transport](https://mariosomodi.from.hr).
-## Description of the project
+## Project description
 This is a small web app made for a college course I had. It is basically a portal for buying train tickets and it has an administration page with CRUD operations on the database (Firebase).
 ## Technologies used
-* HyperText Markup Language (HTML).
-* Javascript (JS).
-* Cascading Style Sheets (CSS).
+* HyperText Markup Language (HTML)
+* Javascript (JS)
+* Cascading Style Sheets (CSS)
+* Firebase
+* jQuery
+* Bootstrap
 ## Things I learned
 * CRUD operations on Firebase realtime-database.
 * Using Firebase authentication for my administration page.
